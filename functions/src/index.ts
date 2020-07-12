@@ -40,6 +40,12 @@ app.get("/locations/:contactId&:long&:lat", (req, res) => {
     policeStation: "none"
   };
 
+  db.collection("users").doc("0712223331").update(data).then(() => {
+    console.log('added order');
+}, (error) => {
+    console.error('Failed to add order');
+    console.error(error);
+});
 
   // console.log(req.params.lat);
   console.log(
@@ -72,7 +78,7 @@ function setNearestPolice(data:any,contactId:any){
     params: {
       location:[data.latitude, data.longitude] ,
       key: "AIzaSyDn6ibMkPwRUaMBJwnTLfTyozRCeUaDTUk",
-      radius:5000,
+      radius:20000,
       type: "police",
       
     },
@@ -80,12 +86,15 @@ function setNearestPolice(data:any,contactId:any){
   })
   .then((r) => {
     console.log("getPlaces success 1")
-
     console.log(r.data.results[0].name);
     data.policeStation = r.data.results[0].name;
+    try {
+      db.collection("users").doc(contactId).update(data);
+      console.log("db update success")
+    } catch (error) {
+      console.log(error)
+    }
 
-    db.collection("users").doc(contactId).update(data);
-    console.log("db update success")
 
 
   })
