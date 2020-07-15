@@ -40,12 +40,12 @@ app.get("/locations/:contactId&:long&:lat", (req, res) => {
     policeStation: "none"
   };
 
-  db.collection("users").doc("0712223331").update(data).then(() => {
-    console.log('added order');
-}, (error) => {
-    console.error('Failed to add order');
-    console.error(error);
-});
+  // db.collection("users").doc("0712223331").update(data).then(() => {
+  //   console.log('added order');
+// }, (error) => {
+//     console.error('Failed to add order');
+//     console.error(error);
+// });
 
   // console.log(req.params.lat);
   console.log(
