@@ -105,9 +105,9 @@ DFRobot_SIM808 sim808(&mySerial);//Connect RX,TX,PWR,
 //    Serial.println(longitude);
 //    Serial.println(sim808.GPSdata.lon,6);
    apiTemp = F("GET http://us-central1-accident-444a8.cloudfunctions.net/webApi/api/v1/locations/0713245678&");
-   apiTemp += String(sim808.GPSdata.lat,6);
-   apiTemp += "&";
    apiTemp += String(sim808.GPSdata.lon,6);
+   apiTemp += "&";
+   apiTemp += String(sim808.GPSdata.lat,6);
    apiTemp += F(" HTTP/1.0\r\n\r\n");
 //   
 //       char apiArray[apiTemp.length() + 1];
